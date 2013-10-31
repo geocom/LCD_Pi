@@ -318,6 +318,9 @@ module LcdPi
 			pulseEnable()
 			self.send_pins(0, 0, 0, 1, 0, 0)
 		end
+		def self.test_screen
+			self.send_text("TEST TEST TEST TTEST TEST TEST T")
+		end
 		def self.send_pins(RS, EN, D4, D5, D6, D7)
 			if RS
 				Wiringpi.digitalWrite(@port_rs, RS)
