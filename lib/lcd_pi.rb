@@ -128,11 +128,11 @@ module LcdPi
 		
 		def self.pulseEnable()
 		    # Indicate to LCD that command should be 'executed'
-		    self.send_pins(, 0,,,,)
+		    self.send_pins(nil, 0, nil, nil, nil, nil)
 		    sleep @time_ms * 10
-		    self.send_pins(, 1,,,,)
+		    self.send_pins(nil, 1, nil, nil, nil, nil)
 		    sleep @time_ms * 10
-		    self.send_pins(, 0,,,,)
+		    self.send_pins(nil, 0, nil, nil, nil, nil)
 		    sleep @time_ms * 10
 		end
 		
@@ -141,16 +141,16 @@ module LcdPi
 		    
 		    pulseEnable()
 		    
-			self.send_pins(0,, block, cursor, display, 1)
+			self.send_pins(0, nil, block, cursor, display, 1)
 			
 			pulseEnable()
 		end
 		
 		def self.setEntryMode()
 		    # Entry mode set: move cursor to right after each DD/CGRAM write
-		    self.send_pins(0,, 0, 0, 0, 0)
+		    self.send_pins(0, nil, 0, 0, 0, 0)
 		    pulseEnable()
-			self.send_pins(0,, 0, 1, 1, 0)
+			self.send_pins(0, nil, 0, 1, 1, 0)
 		    pulseEnable()
 		    sleep @time_ms
 		  end
@@ -175,37 +175,37 @@ module LcdPi
 		      i += 1
 	    	end
 	    	
-		    self.send_pins(0,, 0, 0, @char_size, @lines)
+		    self.send_pins(0, nil, 0, 0, @char_size, @lines)
 	    	# Set number of display lines
     	    pulseEnable()
     	
     	    sleep @time_ms
-    		self.send_pins(0, , 0, 0, 0, 0)
+    		self.send_pins(0, nil, 0, 0, 0, 0)
     	    # Display Off (2 blocks)
     	    pulseEnable()
     	
     	    sleep @time_ms
-    		self.send_pins(0, , 0, 0, 0, 1)
+    		self.send_pins(0, nil, 0, 0, 0, 1)
     	    pulseEnable()
     	
     	    sleep @time_ms
-    		self.send_pins(0, , 0, 0, 0, 0)
+    		self.send_pins(0, nil, 0, 0, 0, 0)
     	    # Display clear (2 blocks)
     	    pulseEnable()
     	
     	    sleep @time_ms
-    		self.send_pins(0, , 1, 0, 0, 0)
+    		self.send_pins(0, nil, 1, 0, 0, 0)
     	    pulseEnable()
     	
     	    sleep @time_ms
     	    
-    		self.send_pins(0, , 0, 0, 0, 0)
+    		self.send_pins(0, nil, 0, 0, 0, 0)
     	    # Entry mode set"
     	    pulseEnable()
     	
     	    sleep @time_ms
     	    
-    		self.send_pins(0, , 1, 1, 1, 0)
+    		self.send_pins(0, nil, 1, 1, 1, 0)
     	    pulseEnable()
 	    end
 	    
@@ -307,9 +307,9 @@ module LcdPi
 					lower = [1, 1, 1, 1]
 				end
 				
-				self.send_pins(1, , upper[0], upper[1], upper[2], upper[3])
+				self.send_pins(1, nil, upper[0], upper[1], upper[2], upper[3])
 				pulseEnable()
-				self.send_pins(1, , lower[0], lower[1], lower[2], upper[3])
+				self.send_pins(1, nil, lower[0], lower[1], lower[2], upper[3])
 				pulseEnable()
 			end
 		end
